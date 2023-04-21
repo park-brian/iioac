@@ -11,20 +11,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class AppServlet extends HttpServlet {
+public class ApiServlet extends HttpServlet {
     private Connection connection;
     private Gson gson;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        gson = new GsonBuilder()
+        setGson(new GsonBuilder()
                 .setPrettyPrinting()
                 .serializeNulls()
-                .create();
+                .create());
+
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            String connectionUrl = "jdbc:ucanaccess:///resources/iioac.mdb";
-            connection = DriverManager.getConnection(connectionUrl);
+            String databasePath = "/resources/iioac.mdb"; // todo: retrieve from context root
+            String connectionUrl = "jdbc:ucanaccess://" + databasePath;
+            setConnection(DriverManager.getConnection(connectionUrl));
         } catch (Exception exception) {
             exception.printStackTrace();
             throw new ServletException(exception);

@@ -52,6 +52,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
@@ -156,7 +157,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682087892841</updated>
       <workItem from="1682087894124" duration="6361000" />
-      <workItem from="1682102897126" duration="10371000" />
+      <workItem from="1682102897126" duration="11137000" />
     </task>
     <servers />
   </component>

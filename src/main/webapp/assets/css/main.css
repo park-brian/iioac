@@ -1,0 +1,10 @@
+:root {
+  --bs-blue: #1072ba;
+  --bs-primary-rgb: 16,114,186;
+  --bs-btn-bg: #1072ba;
+}
+
+[disabled] {
+  cursor: not-allowed !important;
+  opacity: 0.65;
+}

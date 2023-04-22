@@ -46,8 +46,8 @@ jobs:
       - name: Set image names
         id: image-names
         run: |
-          echo "image_name=${{ steps.login-ecr.outputs.registry }}/${{ ECR_REPOSITORY }}:${{ github.sha }}" >> $GITHUB_OUTPUT
-          echo "image_name_latest=${{ steps.login-ecr.outputs.registry }}/${{ ECR_REPOSITORY }}:latest" >> $GITHUB_OUTPUT
+          echo "image_name=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}" >> $GITHUB_OUTPUT
+          echo "image_name_latest=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest" >> $GITHUB_OUTPUT
 
       - name: Build, tag, and push image to Amazon ECR
         uses: docker/build-push-action@v3

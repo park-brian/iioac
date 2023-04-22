@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECS
+name: Deploy Service to AWS App Runner
 on:
   push:
     branches: [main]

@@ -75,4 +75,6 @@ jobs:
             ApplicationPort=${{ env.SERVICE_PORT }},
             EcrAccessRole=${{ env.ECR_ACCESS_ROLE }},
             ImageRepository=${{ steps.image-names.outputs.image_name }},
-            ImageRepositoryType=ECR
+            ImageRepositoryType=ECR,
+            InstanceCpu=${{ secrets.INSTANCE_CPU }},
+            InstanceMemory=${{ secrets.INSTANCE_MEMORY }}

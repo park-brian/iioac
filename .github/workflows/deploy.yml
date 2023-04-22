@@ -68,7 +68,7 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1
         with:
           name: ${{ env.SERVICE_STACK }}
-          template: "./aws/service.yml"
+          template: ".aws/service.yml"
           no-fail-on-empty-changeset: "1"
           parameter-overrides: >-
             ApplicationName=${{ env.SERVICE_NAME }},

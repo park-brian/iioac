@@ -1,4 +1,4 @@
-name: Deploy Service to AWS App Runner
+name: Deploy Service
 on:
   push:
     branches: [main]
@@ -10,7 +10,7 @@ permissions:
 
 env:
   ORACLE_REGISTRY: container-registry.oracle.com
-  SERVICE_STACK: iioac-service
+  SERVICE_STACK: iioac-ecs-service
   SERVICE_NAME: iioac
   SERVICE_PORT: 7001
   ECR_REPOSITORY: iioac
@@ -64,3 +64,22 @@ jobs:
           cache-from: type=registry,ref=${{ steps.image-names.outputs.image_name_latest }}
           cache-to: type=inline
 
+      - name: Deploy service
+        uses: aws-actions/aws-cloudformation-github-deploy@v1
+        with:
+          name: ${{ env.SERVICE_STACK }}
+          template: ".aws/ecs-service.yml"
+          no-fail-on-empty-changeset: "1"
+          parameter-overrides: >-
+            SubnetIds=${{ secrets.SUBNET_IDS }},
+            SecurityGroupIds=${{ secrets.SECURITY_GROUP_IDS }},
+            EcsCluster=${{ secrets.ECS_CLUSTER }},
+            Image=${{ steps.image-names.outputs.image_name }},
+            Name=${{ env.SERVICE_NAME
+            Port=${{ secrets.SERVICE_PORT }},
+            ExecutionRole=${{ secrets.EXECUTION_ROLE }},
+            TaskRole=${{ secrets.TASK_ROLE }},
+            Cpu=${{ secrets.CPU }},
+            Memory=${{ secrets.MEMORY }},
+            Count=${{ secrets.COUNT }},
+            TargetGroupArn=${{ secrets.TARGET_GROUP_ARN }}

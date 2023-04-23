@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea6bc47a-c787-49be-bd3f-864dbeb9a174" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.aws/ecr.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.aws/ecr.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.aws/iam.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.aws/iam.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.aws/service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.aws/service.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/results-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/results-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +158,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682087892841</updated>
       <workItem from="1682087894124" duration="6361000" />
-      <workItem from="1682102897126" duration="36996000" />
+      <workItem from="1682102897126" duration="47385000" />
     </task>
     <servers />
   </component>

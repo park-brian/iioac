@@ -1,4 +1,4 @@
-import { html, useState, useEffect, useRef } from "https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.mjs";
+import { html, useState, useEffect, useRef, useCallback } from "https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.mjs";
 import { createTable } from "https://cdn.jsdelivr.net/npm/@tanstack/table-core@8.8.4/+esm";
 
 export function flexRender(Comp, props) {
@@ -40,6 +40,22 @@ export function useTable(options) {
   }));
 
   return tableRef.current;
+}
+
+export function useSkipper() {
+  const shouldSkipRef = useRef(true)
+  const shouldSkip = shouldSkipRef.current
+
+  // Wrap a function with this to skip a pagination reset temporarily
+  const skip = useCallback(() => {
+    shouldSkipRef.current = false
+  }, [])
+
+  useEffect(() => {
+    shouldSkipRef.current = true
+  })
+
+  return [shouldSkip, skip];
 }
 
 export function IndeterminateCheckbox({

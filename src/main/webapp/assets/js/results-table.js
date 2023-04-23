@@ -1,13 +1,16 @@
 import { getCoreRowModel, getPaginationRowModel, getSortedRowModel } from "https://cdn.jsdelivr.net/npm/@tanstack/table-core@8.8.4/+esm";
 import { html, useEffect, useState, useMemo } from "https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.mjs";
-import { IndeterminateCheckbox, useTable, flexRender } from "./table.js";
-import { exportExcelTable, asNumericValues } from "./utils.js";
+import { IndeterminateCheckbox, useTable, useSkipper, flexRender } from "./table.js";
+import { exportExcelTable } from "./utils.js";
 
 export default function ResultsTable({ results }) {
   const [sorting, setSorting] = useState([]);
   const [rowSelection, setRowSelection] = useState({});
   const numSelected = Object.values(rowSelection).filter(Boolean).length;
-  const data = useMemo(() => results, [results]);
+  const [data, setData] = useState([]);
+  useEffect(() => setData(results), [results, setData]);
+  // const data = useMemo(() => results, [results]);
+  const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper()
 
   useEffect(() => {
     setRowSelection({});
@@ -50,6 +53,7 @@ export default function ResultsTable({ results }) {
     {
       header: () => "Scenario Name",
       accessorKey: "OpName",
+      editable: true,
     },
     {
       header: () => "Source Type",
@@ -69,9 +73,42 @@ export default function ResultsTable({ results }) {
     },
   ]);
 
+  const defaultColumn = {
+    cell: ({ getValue, row: { index }, column: { id, columnDef }, table }) => {
+      if (!columnDef.editable) {
+        return getValue()
+      }
+
+      const initialValue = getValue()
+      // We need to keep and update the state of the cell normally
+      const [value, setValue] = useState(initialValue)
+
+      // When the input is blurred, we'll call our table meta's updateData function
+      const onBlur = () => {
+        table.options.meta?.updateData(index, id, value)
+      }
+
+      // If the initialValue is changed external, sync it up with our state
+      useEffect(() => {
+        setValue(initialValue)
+      }, [initialValue])
+
+      return (
+        html`<input
+          class="border-0"  
+          value=${value}
+          size=${value.length || 30}
+          onChange=${e => setValue(e.target.value)}
+          onBlur=${onBlur}
+        />`
+      )
+    },
+  }
+
   const table = useTable({
     data,
     columns,
+    defaultColumn,
     state: {
       rowSelection,
       sorting,
@@ -82,6 +119,24 @@ export default function ResultsTable({ results }) {
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    autoResetPageIndex,
+    meta: {
+      updateData: (rowIndex, columnId, value) => {
+        // Skip page index reset until after next rerender
+        skipAutoResetPageIndex()
+        setData(old =>
+          old.map((row, index) => {
+            if (index === rowIndex) {
+              return {
+                ...old[rowIndex],
+                [columnId]: value,
+            }
+            }
+            return row
+          })
+        )
+      },
+    },
   });
 
   function exportParameters() {

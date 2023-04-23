@@ -1,10 +1,74 @@
+
 :root {
-  --bs-blue: #1072ba;
-  --bs-primary-rgb: 16,114,186;
-  --bs-btn-bg: #1072ba;
+  --bs-font-serif: 'Merriweather Web', serif;
+  --bs-font-sans-serif: 'Source Sans Pro Web', sans-serif;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-blue: #005ea2;
+  --bs-primary-rgb: 0, 94, 159;
+  --bs-dark-rgb: 61, 69, 81;
+}
+
+.btn {
+  --bs-btn-font-weight: 700;
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--bs-blue);
+  --bs-btn-border-color: #0d6efd;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #0b5ed7;
+  --bs-btn-hover-border-color: #0a58ca;
+  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #0a58ca;
+  --bs-btn-active-border-color: #0a53be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #0d6efd;
+  --bs-btn-disabled-border-color: #0d6efd;
+}
+
+.table {
+  --bs-table-border-color: #1b1b1b;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-top: 2px; /* Offset for font baseline */
+  font-family: var(--bs-font-serif);
+  font-weight: 700;
+}
+
+.font-serif {
+  margin-top: 2px; /* Offset for font baseline */
+  font-family: var(--bs-font-serif) !important;
+}
+
+.font-sans-serif {
+  font-family: var(--bs-font-sans-serif) !important;
 }
 
 [disabled] {
   cursor: not-allowed !important;
   opacity: 0.65;
+}
+
+.text-light-muted {
+  color: rgb(216 222 227) !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: underline;
+}
+
+a.text-light-muted:hover, a.text-light-muted:active, a.text-light-muted:focus {
+  color: white !important;
+}
+
+.bg-grey {
+  background-color: #e6e6e6;
 }

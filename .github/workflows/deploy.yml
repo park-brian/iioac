@@ -71,15 +71,15 @@ jobs:
           template: ".aws/ecs-service.yml"
           no-fail-on-empty-changeset: "1"
           parameter-overrides: >-
-            SubnetIds=${{ secrets.SUBNET_IDS }},
-            SecurityGroupIds=${{ secrets.SECURITY_GROUP_IDS }},
-            EcsCluster=${{ secrets.ECS_CLUSTER }},
-            Image=${{ steps.image-names.outputs.image_name }},
-            Name=${{ env.SERVICE_NAME
-            Port=${{ secrets.SERVICE_PORT }},
-            ExecutionRole=${{ secrets.EXECUTION_ROLE }},
-            TaskRole=${{ secrets.TASK_ROLE }},
-            Cpu=${{ secrets.CPU }},
-            Memory=${{ secrets.MEMORY }},
-            Count=${{ secrets.COUNT }},
-            TargetGroupArn=${{ secrets.TARGET_GROUP_ARN }}
+            SubnetIds="${{ secrets.SUBNET_IDS }}",
+            SecurityGroupIds="${{ secrets.SECURITY_GROUP_IDS }}",
+            EcsCluster="${{ secrets.ECS_CLUSTER }}",
+            Image="${{ steps.image-names.outputs.image_name }}",
+            Name="${{ env.SERVICE_NAME }}",
+            Port="${{ env.SERVICE_PORT }}",
+            ExecutionRole="${{ secrets.EXECUTION_ROLE }}",
+            TaskRole="${{ secrets.TASK_ROLE }}",
+            Cpu="${{ secrets.CPU }}",
+            Memory="${{ secrets.MEMORY }}",
+            Count="${{ secrets.COUNT }}",
+            TargetGroupArn="${{ secrets.TARGET_GROUP_ARN }}"

@@ -72,3 +72,7 @@ a.text-light-muted:hover, a.text-light-muted:active, a.text-light-muted:focus {
 .bg-grey {
   background-color: #e6e6e6;
 }
+
+.vh-100 {
+  height: 100vh;
+}

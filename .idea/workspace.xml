@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea6bc47a-c787-49be-bd3f-864dbeb9a174" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsonCatalog.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.aws/ecr.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.aws/ecr.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.aws/iam.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.aws/iam.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.aws/service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.aws/service.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +45,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "jdk.selected.JAVA_MODULE": "1.8",
     "last_opened_file_path": "D:/Projects/iioac/.aws",
     "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -157,7 +159,7 @@
       <option name="presentableId" value="Default" />
       <updated>1682087892841</updated>
       <workItem from="1682087894124" duration="6361000" />
-      <workItem from="1682102897126" duration="22100000" />
+      <workItem from="1682102897126" duration="36996000" />
     </task>
     <servers />
   </component>

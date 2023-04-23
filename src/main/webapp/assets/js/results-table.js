@@ -6,7 +6,7 @@ import { exportExcelTable, asNumericValues } from "./utils.js";
 export default function ResultsTable({ results }) {
   const [sorting, setSorting] = useState([]);
   const [rowSelection, setRowSelection] = useState({});
-  const hasSelection = Object.values(rowSelection).some(Boolean);
+  const numSelected = Object.values(rowSelection).filter(Boolean).length;
   const data = useMemo(() => results, [results]);
 
   useEffect(() => {
@@ -99,8 +99,8 @@ export default function ResultsTable({ results }) {
   }
 
   return html`<div class="table-responsive mb-3">
-      <table class="table table-hover table-striped mb-0">
-        <thead>
+      <table class="table table-bordered shadow-sm mb-0">
+        <thead class="bg-grey">
           ${table.getHeaderGroups().map(
             (headerGroup) =>
               html`<tr key=${headerGroup.id}>
@@ -168,6 +168,6 @@ export default function ResultsTable({ results }) {
         </select>
       </div>
 
-      <button class="btn btn-primary my-1" onClick=${exportParameters} disabled=${!hasSelection}>Export</button>
+      <button class="btn btn-primary my-1" onClick=${exportParameters} disabled=${numSelected == 0}>Export ${numSelected > 0 && `(${numSelected})`}</button>
     </div> `;
 }

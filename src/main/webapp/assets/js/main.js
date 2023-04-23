@@ -31,24 +31,13 @@ function App() {
   return html`
     <div class="row">
       <div class="col-lg-3">
-        <div class="card shadow mb-4">
-          <div class="card-header bg-primary text-light">
-            <h2 class="h5 mb-0">Assessment Options</h2>
-          </div>
-          <div class="card-body">
-            <${InputForm} options=${options} onSubmit=${handleSubmit} onReset=${handleReset} />
-          </div>
-        </div>
+          <h2 class="h5 mb-4">Assessment Options</h2>
+          <${InputForm} options=${options} onSubmit=${handleSubmit} onReset=${handleReset} />
+
       </div>
       <div class="col-lg-9">
-        <div class="card shadow mb-4">
-          <div class="card-header bg-primary text-light">
-            <h2 class="h5 mb-0">Model Parameters</h2>
-          </div>
-          <div class="card-body">
-            <${ResultsTable} results=${results} />
-          </div>
-        </div>
+          <h2 class="h5 mb-4">Model Parameters</h2>
+          <${ResultsTable} results=${results} />
       </div>
     </div>
   `;

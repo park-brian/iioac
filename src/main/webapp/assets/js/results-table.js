@@ -95,7 +95,8 @@ export default function ResultsTable({ results }) {
 
       return (
         html`<input
-          class="border-0"  
+          class="border-0"
+          aria-label="Edit cell"
           value=${value}
           size=${value.length || 30}
           onChange=${e => setValue(e.target.value)}

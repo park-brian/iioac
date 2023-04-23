@@ -64,17 +64,3 @@ jobs:
           cache-from: type=registry,ref=${{ steps.image-names.outputs.image_name_latest }}
           cache-to: type=inline
 
-      - name: Deploy service
-        uses: aws-actions/aws-cloudformation-github-deploy@v1
-        with:
-          name: ${{ env.SERVICE_STACK }}
-          template: ".aws/service.yml"
-          no-fail-on-empty-changeset: "1"
-          parameter-overrides: >-
-            ApplicationName=${{ env.SERVICE_NAME }},
-            ApplicationPort=${{ env.SERVICE_PORT }},
-            EcrAccessRole=${{ env.ECR_ACCESS_ROLE }},
-            ImageRepository=${{ steps.image-names.outputs.image_name }},
-            ImageRepositoryType=ECR,
-            InstanceCpu=${{ secrets.INSTANCE_CPU }},
-            InstanceMemory=${{ secrets.INSTANCE_MEMORY }}

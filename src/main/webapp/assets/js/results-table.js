@@ -106,7 +106,7 @@ export default function ResultsTable({ results }) {
           aria-label="Edit cell"
           value=${value}
           size=${value.length || 30}
-          onChange=${e => value !== setValue(e.target.value)}
+          onChange=${e => setValue(e.target.value)}
           onBlur=${onBlur}
         />`
       )

@@ -3,7 +3,7 @@ import { html, useEffect, useState, useMemo } from "https://cdn.jsdelivr.net/npm
 import { IndeterminateCheckbox, useTable, useSkipper, flexRender } from "./table.js";
 import { exportExcelTable } from "./utils.js";
 
-export default function ResultsTable({ results }) {
+export default function ResultsTable({ results, loading }) {
   const [sorting, setSorting] = useState([]);
   const [rowSelection, setRowSelection] = useState({});
   const numSelected = Object.values(rowSelection).filter(Boolean).length;
@@ -192,6 +192,18 @@ export default function ResultsTable({ results }) {
               </tr>`
           )}
         </tbody>
+        <tfoot>
+          <tr hidden=${!loading}>
+            <td colspan=${columns.length} class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading</span>
+                </div>
+                <div class="fw-semibold">
+                    Loading 
+                </div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
 

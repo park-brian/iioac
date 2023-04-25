@@ -8,6 +8,7 @@ const baseUrl = window.location.hostname === "localhost" ? "http://localhost:700
 render(html`<${App} />`, window.app);
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState({});
   const [results, setResults] = useState([]);
   const [form, setForm] = useState({});
@@ -17,7 +18,16 @@ function App() {
   }, []);
 
   useEffect(async () => {
-    setResults(asNumericValues(await query(`${baseUrl}/api/query`, form)));
+    try {
+      setLoading(true);
+      setResults([]);
+      const results = await query(`${baseUrl}/api/query`, form);
+      setResults(asNumericValues(results));
+    } catch(e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   }, [form]);
 
   function handleSubmit(form) {
@@ -37,7 +47,7 @@ function App() {
       </div>
       <div class="col-lg-10 col-md-9">
           <h2 class="h5 mb-4">Model Parameters</h2>
-          <${ResultsTable} results=${results} />
+          <${ResultsTable} results=${results} loading=${loading} />
       </div>
     </div>
   `;

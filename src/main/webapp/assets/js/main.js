@@ -42,7 +42,7 @@ function App() {
     <div class="row">
       <div class="col-lg-2 col-md-3">
           <h2 class="h5 mb-4">Assessment Options</h2>
-          <${InputForm} options=${options} onSubmit=${handleSubmit} onReset=${handleReset} />
+          <${InputForm} options=${options} loading=${loading} onSubmit=${handleSubmit} onReset=${handleReset} />
 
       </div>
       <div class="col-lg-10 col-md-9">

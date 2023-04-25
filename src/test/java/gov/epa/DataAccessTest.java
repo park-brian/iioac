@@ -29,6 +29,12 @@ class DataAccessTest {
     }
 
     @Test
+    void getStatus() throws SQLException {
+        boolean status = DataAccess.getStatus(connection);
+        assertTrue(status);
+    }
+
+    @Test
     void getOptions() throws SQLException {
         Map<String, List<String>> results = DataAccess.getOptions(connection);
 

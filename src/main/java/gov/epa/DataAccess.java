@@ -10,6 +10,18 @@ import java.util.List;
 import java.util.Map;
 
 public class DataAccess {
+
+    public static boolean getStatus(Connection connection) throws SQLException {
+        String sql = "SELECT 1 from Assessments limit 1";
+        try(PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString(1).equals("1");
+                }
+                return false;
+            }
+    }
+
     public static Map<String, List<String>> getOptions(Connection connection) throws SQLException {
         String assessOptionsSql = "SELECT DISTINCT AssessID FROM IrerRels where AssessID is not null";
         String assOpOptionsSql = "SELECT DISTINCT AssOpID FROM IrerRels where AssOpID is not null";

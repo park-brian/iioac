@@ -17,7 +17,7 @@ export default function InputForm({options, loading, onSubmit, onReset }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (onSubmit)
+    if (onSubmit && !loading)
       onSubmit(form);
   }
 

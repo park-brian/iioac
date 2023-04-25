@@ -1,3 +1,6 @@
+body {
+  min-width: 400px;
+}
 
 :root {
   --bs-font-serif: 'Merriweather Web', serif;
@@ -30,7 +33,7 @@
 }
 
 .table {
-  --bs-table-border-color: #1b1b1b;
+  font-variant-numeric: tabular-nums;
 }
 
 [disabled] {
@@ -73,6 +76,6 @@ a:hover, a:active, a:focus {
   text-decoration: underline;
 }
 
-.bg-grey {
-  background-color: #e6e6e6;
+.cursor-pointer {
+  cursor: pointer;
 }

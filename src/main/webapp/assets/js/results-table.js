@@ -8,14 +8,14 @@ export default function ResultsTable({ results }) {
   const [rowSelection, setRowSelection] = useState({});
   const numSelected = Object.values(rowSelection).filter(Boolean).length;
   const [data, setData] = useState([]);
-  useEffect(() => setData(results), [results, setData]);
-  // const data = useMemo(() => results, [results]);
+  // useEffect(() => setData(results), [results, setData]);
   const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper()
 
   useEffect(() => {
+    setData(results)
     setRowSelection({});
     setSorting([]);
-  }, [data]);
+  }, [setData, setRowSelection, setSorting, results]);
 
   const columns = useMemo(() => [
     {
@@ -43,40 +43,47 @@ export default function ResultsTable({ results }) {
         </div>`,
     },
     {
-      header: () => "PMN #",
+      header: () => html`<span class="text-nowrap">PMN #</span>`,
       accessorKey: "PMN",
+      cellClass: "text-nowrap",
     },
     {
-      header: () => "Scenario #",
+      header: () => html`<span class="text-nowrap">Scenario #</span>`,
       accessorKey: "AssessID",
+      cellClass: "text-nowrap text-end",
     },
     {
-      header: () => "Scenario Name",
+      header: () => html`<span class="text-nowrap">Scenario Name</span>`,
       accessorKey: "OpName",
       editable: true,
+      cellClass: "text-nowrap",
     },
     {
-      header: () => "Source Type",
+      header: () => html`<span class="text-nowrap">Source Type</span>`,
       accessorKey: "Media",
+      cellClass: "text-nowrap",
     },
     {
-      header: () => "Release #",
+      header: () => html`<span class="text-nowrap">Release #</span>`,
       accessorKey: "ActSort",
+      cellClass: "text-nowrap text-end",
     },
     {
-      header: () => "Mass Released per Day (kg/day)",
+      header: () => html`<span class="text-nowrap">Kg/Day Released</span>`,
       accessorKey: "DRR",
+      cellClass: "text-nowrap text-end",
     },
     {
-      header: () => "# of release Days per Year",
+      header: () => html`<span class="text-nowrap">Release Days/Year</span>`,
       accessorKey: "DOR",
+      cellClass: "text-nowrap text-end",
     },
   ]);
 
   const defaultColumn = {
     cell: ({ getValue, row: { index }, column: { id, columnDef }, table }) => {
       if (!columnDef.editable) {
-        return getValue()
+        return getValue();
       }
 
       const initialValue = getValue()
@@ -95,11 +102,11 @@ export default function ResultsTable({ results }) {
 
       return (
         html`<input
-          class="border-0"
+          class="border-0 bg-transparent"
           aria-label="Edit cell"
           value=${value}
           size=${value.length || 30}
-          onChange=${e => setValue(e.target.value)}
+          onChange=${e => value !== setValue(e.target.value)}
           onBlur=${onBlur}
         />`
       )
@@ -131,7 +138,7 @@ export default function ResultsTable({ results }) {
               return {
                 ...old[rowIndex],
                 [columnId]: value,
-            }
+              }
             }
             return row
           })
@@ -155,17 +162,17 @@ export default function ResultsTable({ results }) {
   }
 
   return html`<div class="table-responsive mb-3">
-      <table class="table table-bordered shadow-sm mb-0">
-        <thead class="bg-grey">
+      <table class="table table-striped table-hover table-bordered mb-0">
+        <thead class="bg-primary text-light">
           ${table.getHeaderGroups().map(
             (headerGroup) =>
               html`<tr key=${headerGroup.id}>
                 ${headerGroup.headers.map(
                   (header) =>
-                    html`<th key=${header.id} colspan=${header.colSpan}>
+                    html`<th class="text-nowrap" key=${header.id} colspan=${header.colSpan}>
                       ${header.isPlaceholder
                         ? null
-                        : html`<div onClick=${header.column.getToggleSortingHandler()}>
+                        : html`<div class="cursor-pointer" onClick=${header.column.getToggleSortingHandler()}>
                             ${flexRender(header.column.columnDef.header, header.getContext())}
                             ${{
                               asc: " 🔼",
@@ -181,7 +188,7 @@ export default function ResultsTable({ results }) {
           ${table.getRowModel().rows.map(
             (row) =>
               html`<tr key=${row.id}>
-                ${row.getVisibleCells().map((cell) => html`<td key=${cell.id}>${flexRender(cell.column.columnDef.cell, cell.getContext())}</td>`)}
+                ${row.getVisibleCells().map((cell) => html`<td key=${cell.id} class=${cell.column.columnDef.cellClass}>${flexRender(cell.column.columnDef.cell, cell.getContext())}</td>`)}
               </tr>`
           )}
         </tbody>
@@ -193,7 +200,7 @@ export default function ResultsTable({ results }) {
         <nav aria-label="paginate table">
           <ul class="pagination mb-0">
             <li class="page-item">
-              <span class="page-link text-dark"> Page <strong>${table.getState().pagination.pageIndex + 1} ${" of "} ${Math.max(1, table.getPageCount())} </strong> </span>
+              <span class="page-link text-dark text-nowrap"> Page <strong>${table.getState().pagination.pageIndex + 1} ${" of "} ${Math.max(1, table.getPageCount())} </strong> </span>
             </li>
             <li class="page-item">
               <button type="button" className="page-link" onClick=${() => table.setPageIndex(0)} disabled=${!table.getCanPreviousPage()}>${"<<"}</button>

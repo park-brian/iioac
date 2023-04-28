@@ -30,11 +30,22 @@ export async function query(url, params = {}) {
   return await response.json();
 }
 
+export function getColumnTypes(tableData) {
+  const firstRow = tableData[0] || {};
+  const columnTypes = {};
+  for (let key in firstRow) {
+    columnTypes[key] = typeof firstRow[key] === "number" ? Number : String;
+  }
+  return columnTypes;
+}
+
 export async function exportExcelTable(tableData, fileName) {
+  const columnTypes = getColumnTypes(tableData);
   const schema = Object.keys(tableData[0] || []).map((column) => ({
     column,
     value: (obj) => obj[column],
-    width: 30, 
+    type: columnTypes[column],
+    width: 30,
   }));
 
   await writeXlsxFile(tableData, {

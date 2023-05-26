@@ -73,6 +73,14 @@ public class DataAccess {
                 if (media != null) {
                     for (String item : media.split("\\s+or\\s+")) {
                         HashMap<String, Object> mediaResult = new HashMap<>(result);
+                        if (item.equals("Air (Fugitive)")) {
+                            item = "Fugitive";
+                        }
+
+                        if (item.equals("Air (Stack)")) {
+                            item = "Stack";
+                        }
+
                         mediaResult.put("Media", item);
                         results.add(mediaResult);
                     }

@@ -1,5 +1,5 @@
-import { getCoreRowModel, getPaginationRowModel, getSortedRowModel } from "https://cdn.jsdelivr.net/npm/@tanstack/table-core@8.8.4/+esm";
-import { html, useEffect, useState, useMemo } from "https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.mjs";
+import { getCoreRowModel, getPaginationRowModel, getSortedRowModel } from "./lib/table-core.js";
+import { html, useEffect, useState, useMemo } from "./lib/preact.js";
 import { IndeterminateCheckbox, useTable, useSkipper, flexRender } from "./table.js";
 import { exportExcelTable } from "./utils.js";
 

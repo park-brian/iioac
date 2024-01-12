@@ -1,5 +1,5 @@
-import { html, useState, useEffect, useRef, useCallback } from "https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.mjs";
-import { createTable } from "https://cdn.jsdelivr.net/npm/@tanstack/table-core@8.8.4/+esm";
+import { html, useState, useEffect, useRef, useCallback } from "./lib/preact.js";
+import { createTable } from "./lib/table-core.js";
 
 export function flexRender(Comp, props) {
   return !Comp ? null : html`<${Comp} ...${props} />`;

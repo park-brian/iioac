@@ -1,4 +1,4 @@
-import { html, useState } from "https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.mjs";
+import { html, useState } from "./lib/preact.js";
 
 export const defaultForm = {
   AssessID: "",

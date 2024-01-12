@@ -1,4 +1,4 @@
-import { html, render, useState, useEffect } from "https://cdn.jsdelivr.net/npm/htm@3.1.1/preact/standalone.mjs";
+import { html, render, useState, useEffect } from "./lib/preact.js";
 import InputForm from "./input-form.js";
 import ResultsTable from "./results-table.js";
 import {asNumericValues, query} from "./utils.js";

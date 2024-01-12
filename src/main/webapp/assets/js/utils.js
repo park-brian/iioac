@@ -1,4 +1,4 @@
-import writeXlsxFile from "https://cdn.jsdelivr.net/npm/write-excel-file@1.4.24/+esm";
+import writeXlsxFile from "./lib/write-excel-file.js"
 
 export function isUndefined(value, undefinedValues = [null, undefined, ""]) {
   return undefinedValues.includes(value);
